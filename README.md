@@ -21,13 +21,7 @@ The implementation closely reproduces the original ResNet50 results on ImageNet 
 
 Try out a pre-trained models [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/AndrewAtanov/simclr-pytorch/blob/master/colabs/model_apply.ipynb) 
 
-Pre-trained weights can be downloaded with a command line interface as following:
-
-```(bash)
-pip3 install wldhx.yadisk-direct
-curl -L $(yadisk-direct https://yadi.sk/d/Sg9uSLfLBMCt5g?w=1) -o pretrained_models.zip
-unzip pretrained_models.zip 
-```
+You can download pre-trained weights from [here](https://drive.google.com/file/d/13tjpWYTzV8qLB5yY5raBn5cwtIyFtt6-/view?usp=sharing).
 
 To eval the preatrained CIFAR-10 linear model and encoder use the following command:
 ```(bash)
