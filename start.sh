@@ -1,0 +1,2 @@
+IMAGENET_PATH=/home/wenquan-lu/Workspace/noisy_ssl/simclr-pytorch/noisy_mini-imagenet-gauss100 python train.py --config configs/mini_imagenet.yaml --out output_gauss100-200
+IMAGENET_PATH=/home/wenquan-lu/Workspace/noisy_ssl/simclr-pytorch/noisy_mini-imagenet-gauss100-denoised python train.py --config configs/mini_imagenet.yaml --out output_gauss100-200-denoised

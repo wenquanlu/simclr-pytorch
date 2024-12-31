@@ -1,0 +1,4 @@
+19 300 epochs
+24 evaluate 19
+
+23 resnet18 200 epochs

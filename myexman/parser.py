@@ -161,7 +161,7 @@ class ExParser(ParserWithRoot):
         try:
             # with self.lock:  # different processes can make it same time, this is needed to avoid collision
             time = datetime.datetime.now()
-            num = self.next_ex_str()
+            num = self.out #self.next_ex_str()
             name = DIR_FORMAT.format(num=num, time=time.strftime(TIME_FORMAT_DIR))
             if tmp:
                 absroot = self.tmp / name
@@ -189,6 +189,7 @@ class ExParser(ParserWithRoot):
                 print("id:", int(self.num), file=f)
             print(self.yaml_params_path.read_text())
             return args, argv
+        self.out = args.out
 
         absroot, relroot, name, time, num = self._initialize_dir(args.tmp)
         self.time = time
@@ -201,7 +202,7 @@ class ExParser(ParserWithRoot):
         #    dumpd['root'] = relroot
             yaml.dump(self.dumpd, f, default_flow_style=False)
             print("\ntime: '{}'".format(time.strftime(TIME_FORMAT)), file=f)
-            print("id:", int(num), file=f)
+            print("id:", num, file=f)
         print(self.yaml_params_path.read_text())
         symlink = self.index / yaml_file(name)
         if not args.tmp:
@@ -229,4 +230,4 @@ class ExParser(ParserWithRoot):
         with self.yaml_params_path.open('w') as f:
             yaml.dump(dumpd, f, default_flow_style=False)
             print("\ntime: '{}'".format(self.time.strftime(TIME_FORMAT)), file=f)
-            print("id:", int(self.num), file=f)
+            print("id:", self.num, file=f)

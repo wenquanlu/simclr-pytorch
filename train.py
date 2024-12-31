@@ -54,6 +54,7 @@ def add_learner_params(parser):
     parser.add_argument('--world_size', default=1, type=int,
         help='the number of nodes (scripts launched)',
     )
+    parser.add_argument('--out', required=True)
 
 
 def main():
@@ -66,6 +67,7 @@ def main():
         is_help = True
 
     args, _ = parser.parse_known_args(log_params=False)
+
 
     models.REGISTERED_MODELS[args.problem].add_model_hparams(parser)
 
@@ -191,6 +193,7 @@ def main_worker(gpu, ngpus, args):
                 with torch.no_grad():
                     for batch in val_loader:
                         batch = [x.to(device) for x in batch]
+                        #print(batch[1])
                         # forward pass
                         logs = model.test_step(batch)
                         # save logs for the batch

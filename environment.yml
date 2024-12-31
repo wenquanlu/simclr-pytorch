@@ -78,4 +78,4 @@ dependencies:
   - pip:
     - diffdist==0.1
     - strconv==0.4.2
-prefix: /home/aashukha/miniconda3/envs/simclr_pytorch
+

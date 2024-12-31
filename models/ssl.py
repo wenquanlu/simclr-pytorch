@@ -26,7 +26,7 @@ class BaseSSL(nn.Module):
     Similar but lighter and customized version.
     """
     DATA_ROOT = os.environ.get('DATA_ROOT', os.path.dirname(os.path.abspath(__file__)) + '/data')
-    IMAGENET_PATH = os.environ.get('IMAGENET_PATH', '/home/aashukha/imagenet/raw-data/')
+    IMAGENET_PATH = os.environ.get('IMAGENET_PATH', '/home/wenquan-lu/Workspace/noisy_ssl/simclr-pytorch/mini-imagenet/')
 
     def __init__(self, hparams):
         super().__init__()
@@ -145,6 +145,7 @@ class SimCLR(BaseSSL):
         self.reset_parameters()
         if device is not None:
             model = model.to(device)
+        self.hparams.dist='ddp'
         if self.hparams.dist == 'ddp':
             if self.hparams.sync_bn:
                 model = nn.SyncBatchNorm.convert_sync_batchnorm(model)
@@ -325,7 +326,7 @@ class SSLEval(BaseSSL):
             n_classes = 10
         elif hparams.data == 'imagenet':
             hdim = self.encode(torch.ones(10, 3, 224, 224).to(device)).shape[1]
-            n_classes = 1000
+            n_classes = 100
 
         if hparams.arch == 'linear':
             model = nn.Linear(hdim, n_classes).to(device)
@@ -342,8 +343,8 @@ class SSLEval(BaseSSL):
         return self.encoder.model(x, out='h')
 
     def step(self, batch):
-        if self.hparams.problem == 'eval' and self.hparams.data == 'imagenet':
-            batch[0] = batch[0] / 255.
+        #if self.hparams.problem == 'eval' and self.hparams.data == 'imagenet':
+        #    batch[0] = batch[0] / 255.
         h, y = batch
         if self.hparams.precompute_emb_bs == -1:
             h = self.encode(h)
@@ -473,12 +474,12 @@ class SSLEval(BaseSSL):
                 ),
                 transforms.RandomHorizontalFlip(),
                 transforms.ToTensor(),
-                lambda x: (255*x).byte(),
+                #lambda x: (255*x).byte(),
             ])
             test_transform = transforms.Compose([
                 datautils.CenterCropAndResize(proportion=0.875, size=224),
                 transforms.ToTensor(),
-                lambda x: (255 * x).byte(),
+                #lambda x: (255 * x).byte(),
             ])
         return train_transform if self.hparams.aug else test_transform, test_transform
 

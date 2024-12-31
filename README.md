@@ -1,4 +1,4 @@
-# SimCLR PyTorch
+# SimCLR PyTorch (forked from https://github.com/AndrewAtanov/simclr-pytorch)
 
 This is an unofficial repository reproducing results of the paper [A Simple Framework for Contrastive Learning of Visual Representations](https://arxiv.org/abs/2002.05709). The implementation supports multi-GPU distributed training on several nodes with PyTorch `DistributedDataParallel`.
 
