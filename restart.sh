@@ -1,0 +1,1 @@
+IMAGENET_PATH=/home/wenquan-lu/Workspace/noisy_ssl/simclr-pytorch/noisy_mini-imagenet-gauss100 python train.py --config configs/mini_imagenet_restart.yaml --ckpt logs/exman-train.py/runs/output_gauss100-200-denoised/checkpoint-70000.pth.tar --out output_gauss100-resume-0-140-200-0-60-60

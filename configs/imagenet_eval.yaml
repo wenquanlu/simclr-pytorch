@@ -10,7 +10,7 @@ dist: ddp
 dist_address: '127.0.0.1:1234'
 encode_layer: h
 encoder_ckpt: ''
-eval_freq: 1250
+eval_freq: 12500
 finetune: false
 iters: 12500
 log_freq: 500

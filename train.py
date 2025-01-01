@@ -150,8 +150,8 @@ def main_worker(gpu, ngpus, args):
     optimizer, scheduler = models.ssl.configure_optimizers(args, model, cur_iter - 1)
 
     # optionally resume from a checkpoint
-    if args.ckpt and not args.eval_only:
-        optimizer.load_state_dict(ckpt['opt_state_dict'])
+    #if args.ckpt and not args.eval_only:
+    #    optimizer.load_state_dict(ckpt['opt_state_dict'])
 
     cudnn.benchmark = True
 
